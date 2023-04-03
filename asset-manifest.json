@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/N-Years-Ago-From/static/css/main.b22e7884.css",
+    "main.js": "/N-Years-Ago-From/static/js/main.75a26fa9.js",
+    "index.html": "/N-Years-Ago-From/index.html",
+    "main.b22e7884.css.map": "/N-Years-Ago-From/static/css/main.b22e7884.css.map",
+    "main.75a26fa9.js.map": "/N-Years-Ago-From/static/js/main.75a26fa9.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.b22e7884.css",
+    "static/js/main.75a26fa9.js"
+  ]
+}
