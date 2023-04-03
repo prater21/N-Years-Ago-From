@@ -1,0 +1,130 @@
+.body{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    color: aliceblue;
+}
+
+.body__title{
+    display: flex;
+    width: 1000px;
+}
+
+.body__title h1{
+    margin-left:20px;
+    font-size: 30px;
+}
+
+.body_datePicker{
+    margin-left: 30px;
+    margin-top: 27px;
+}
+
+.body__content{
+    color: aliceblue;
+    width: 1000px;
+    padding: 0;
+}
+
+.body_videos,
+.body__empty{
+    list-style: none;
+    width: 1000px;
+    margin-bottom: 40px;
+
+}
+
+.body__emptyImg{
+    width: 270px;
+    margin-left: 20px;
+    margin-bottom: 10px;
+}
+
+.body_year{
+    font-size: 25px;
+    margin-left: 25px;
+}
+
+.body_video{
+    display: flex;
+    margin-left: 20px;
+    margin-bottom: 10px;
+    width: 970px;
+    overflow-x: scroll;
+}
+
+.body__player{
+    margin-right: 5px;
+}
+
+.body_videos hr,
+.body__empty hr{
+    width: 1000px;
+    border: 1px solid gray;
+}
+
+.body_video::-webkit-scrollbar {
+    width: 15px;
+  }
+.body_video::-webkit-scrollbar-thumb {
+    background-color: #636770;
+    border-radius: 10px;
+    background-clip: padding-box;
+    border: 4px solid rgb(34, 34, 34);
+  }
+.body_video::-webkit-scrollbar-track {
+    background-color: rgb(34, 34, 34) ;
+}
+  
+
+.body__loading{
+    margin-top: 50px;
+}
+
+@media (max-width: 1023px) {
+    
+    .body__title h1{
+        margin-left:10px;
+        font-size: 15px;
+    }
+
+    .body_datePicker{
+        margin-left: 10px;
+        margin-top: 8px;
+    }
+    .body__title,
+    .body_container{
+        width: 100%;
+    }
+    .body__content{
+        width: 100%;
+        margin-top: 0;
+    }
+    .body_videos hr,
+    .body__empty hr{
+        width: 97%;
+        margin: 0;
+    }
+
+    .body_videos,
+    .body__empty{
+        width: 100%;
+        margin-bottom: 15px;
+    }
+     .body_video{
+        width: 92%;
+        margin-left: 18px;
+        margin-bottom: 0px;
+    }
+    .body__emptyImg{
+        width: 100px;
+    }
+    .body__player iframe{
+        width: 240px;
+        height: 135px;
+    }
+    .body_year{
+        margin: 10px 20px;
+        font-size: 15px;
+    }
+}
