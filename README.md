@@ -4,6 +4,7 @@
 
 N Years Ago From is a website that shows you chim-chak-man(youtuber) videos that uploaded on a specific day from 2017 to 2023
 
+[__>>LIVE DEMO__](https://prater21.github.io/N-Years-Ago-From/)
 
 <img width="50%" src="https://user-images.githubusercontent.com/126800695/229607966-29cade94-fd5e-4d78-99e1-c040fac91543.gif" /> 
 
@@ -11,7 +12,7 @@ N Years Ago From is a website that shows you chim-chak-man(youtuber) videos that
 ## Built with
 
 - React
-- Youtube Data Api
+- [Youtube Data Api](https://developers.google.com/youtube)
 
 ## Config
 
