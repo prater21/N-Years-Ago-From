@@ -14,20 +14,22 @@
 }
 
 .header__profileImg{
-    width: 100px;
+    width: 80px;
     border-radius: 50px;
-    margin: 20px;
+    margin: 15px 20px;
 }
+
 .header__name{
-    font-size: 25px;
+    font-size: 1.5rem;
     color: aliceblue;
-    margin: 40px 0 0 0;
+    margin: 30px 0 0 0;
 }
 
 .header__description{
-    font-size: 15px;
+    font-size: 1rem;
     color: rgb(194, 194, 194);
     margin: 5px 0 0 0;
+    width: 280px;
 }
 
 .header__line{
@@ -41,19 +43,17 @@
     .header__profile{
         width: 100%;
     }
-
     .header__profileImg{
-        width: 45px;
-        height: 45px;
+        width: 50px;
+        height: 50px;
         margin: 10px 10px 5px 15px;
-
     }
     .header__name{
-        font-size: 12px;
+        font-size: 1rem;
         margin: 14px 0 0 0;
     }   
     .header__description{
-        font-size: 15px;
+        font-size: 0.8rem;
     }
     .header__line{
         width: 100%;

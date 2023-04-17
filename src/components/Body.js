@@ -11,6 +11,7 @@ const Body = () => {
     const [loading, setLoading] = useState(false);
     const publishData = [];
 
+
     const getData = async (publishData) => {
         const _videos = [];
         setLoading(true);
@@ -83,7 +84,7 @@ const Body = () => {
                                 <div className="body_video" >
                                     {data.items?.map(item =>
                                         <div className="body__player">
-                                            <iframe id={item.id.videoId} title={`video-${item.id.videoId}`} type="text/html" width="480" height="270"
+                                            <iframe id={item.id.videoId} title={`video-${item.id.videoId}`} type="text/html" width="400" height="225"
                                                 src={`http://www.youtube.com/embed/${item.id.videoId}?enablejsapi=1&origin=http://localhost:3000`}
                                                 frameborder="0" allowFullScreen>
                                             </iframe>
@@ -94,7 +95,7 @@ const Body = () => {
                             </li>) : (
                             <li key={data.year} className="body__empty" >
                                 <p className="body_year">{data.year}년 {date.getMonth() + 1}월 {date.getDate()}일</p>
-                                <img className="body__emptyImg" src="img/chim-no-video.png" alt="" />
+                                <img className="body__emptyImg" src={process.env.PUBLIC_URL + "/img/chim-no-video.png"} alt="" />
                                 <hr />
                             </li>
                         ))
