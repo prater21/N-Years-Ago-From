@@ -15,6 +15,7 @@ const Body = () => {
     const getData = async (publishData) => {
         const _videos = [];
         setLoading(true);
+        //get data from youtube data API
         for (const pub of publishData) {
             await axios.get("https://www.googleapis.com/youtube/v3/search", {
                 params: {
@@ -27,7 +28,6 @@ const Body = () => {
                 }
             }).then(response => {
                 const _year = pub[0].slice(0, 4);
-                console.log("response ok");
                 _videos.push({ year: _year, items: response.data.items })
 
             }).catch(err => {
@@ -38,8 +38,7 @@ const Body = () => {
         setLoading(false);
     }
 
-    console.log(videos);
-
+    //set video published date
     const getPublishDate = (year, iter, today, tomorrow) => {
         for (let i = 0; i < iter; i++) {
             let pubAfter = year + "-" + (today.getMonth() + 1) + "-" + today.getDate() + "T00:00:00Z";
@@ -54,17 +53,18 @@ const Body = () => {
         let today = new Date(date);
         let tomorrow = new Date(date);
         tomorrow.setDate(date.getDate() + 1)
+        // 29 FEB
         if (date.getMonth() === 1 && date.getDate() === 28) {
             getPublishDate(date.getYear(), 1, today, tomorrow);
         }
         else if (date < new Date()) {
             getPublishDate(2023, 7, today, tomorrow);
-            getData(publishData);
         }
         else {
             getPublishDate(2022, 6, today, tomorrow);
-            getData(publishData);
         }
+        getData(publishData);
+
     }
 
     return (
@@ -95,7 +95,7 @@ const Body = () => {
                             </li>) : (
                             <li key={data.year} className="body__empty" >
                                 <p className="body_year">{data.year}년 {date.getMonth() + 1}월 {date.getDate()}일</p>
-                                <img className="body__emptyImg" src={process.env.PUBLIC_URL + "/img/chim-no-video.png"} alt="" />
+                                <img className="body__emptyImg" src={process.env.PUBLIC_URL + "/img/chim-no-video.png"} alt="no video img" />
                                 <hr />
                             </li>
                         ))
