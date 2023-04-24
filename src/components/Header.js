@@ -1,8 +1,14 @@
+/**
+ * header component
+ */
+
 import "./Header.css"
 
 const Header = () => {
     return <div className="header">
+        {/* top image(header image) */}
         <img className="header__img" src={process.env.PUBLIC_URL + '/img/chim-header.png'} alt="" />
+        {/* 침착맨 프로필 */}
         <div className="header__profile">
             <img className="header__profileImg" src={process.env.PUBLIC_URL + '/img/chim-profile.jpeg'} alt="" />
             <div>

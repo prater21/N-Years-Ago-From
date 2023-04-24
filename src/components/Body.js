@@ -1,17 +1,22 @@
-import "./Body.css"
-import DatePicker from "react-datepicker";
+/**
+ * body component
+ */
 import { useState } from "react";
-import "react-datepicker/dist/react-datepicker.css";
 import axios from "axios";
 import Spinner from "react-spinners/ClipLoader";
+import DatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
+import "./Body.css"
 
 const Body = () => {
+    // date variable
     const [date, setDate] = useState(new Date());
+    // video data variable
     const [videos, setVideos] = useState([]);
     const [loading, setLoading] = useState(false);
     const publishData = [];
 
-
+    // get video data
     const getData = async (publishData) => {
         const _videos = [];
         setLoading(true);
@@ -48,13 +53,14 @@ const Body = () => {
         }
     }
 
+    // set date when datepicker clicked
     const dateChangeHandler = (date) => {
         setDate(date);
         let today = new Date(date);
         let tomorrow = new Date(date);
         tomorrow.setDate(date.getDate() + 1)
-        // 29 FEB
-        if (date.getMonth() === 1 && date.getDate() === 28) {
+
+        if (date.getMonth() === 1 && date.getDate() === 28) {   // 29 FEB
             getPublishDate(date.getYear(), 1, today, tomorrow);
         }
         else if (date < new Date()) {
@@ -79,6 +85,7 @@ const Body = () => {
                 <ul className="body__content">
                     {videos.map(data => (
                         data.items.length ? (
+                            // exist video data
                             <li className="body_videos" key={data.items[0]?.id.videoId}>
                                 <p className="body_year">{data.year}년 {date.getMonth() + 1}월 {date.getDate()}일</p>
                                 <div className="body_video" >
@@ -93,6 +100,7 @@ const Body = () => {
                                 </div>
                                 <hr />
                             </li>) : (
+                            //no video data
                             <li key={data.year} className="body__empty" >
                                 <p className="body_year">{data.year}년 {date.getMonth() + 1}월 {date.getDate()}일</p>
                                 <img className="body__emptyImg" src={process.env.PUBLIC_URL + "/img/chim-no-video.png"} alt="no video img" />
@@ -103,7 +111,9 @@ const Body = () => {
                     )}
                 </ul>
             </div>}
+
             {loading &&
+                //loading spinner
                 <div className="body__loading">
                     <Spinner
                         color="white"
