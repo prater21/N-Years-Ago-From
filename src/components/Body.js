@@ -1,6 +1,7 @@
 /**
  * body component
  */
+
 import { useState } from "react";
 import axios from "axios";
 import Spinner from "react-spinners/ClipLoader";
@@ -77,7 +78,7 @@ const Body = () => {
         <div className="body">
             <div className="body__title">
                 <h1 >N년전 오늘의 침착맨</h1>
-                <div className="body_datePicker" >
+                <div className="body__datePicker" >
                     <DatePicker selected={date} onChange={(date) => dateChangeHandler(date)} />
                 </div>
             </div>
