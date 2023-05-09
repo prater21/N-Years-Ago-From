@@ -82,14 +82,14 @@ const Body = () => {
                     <DatePicker selected={date} onChange={(date) => dateChangeHandler(date)} />
                 </div>
             </div>
-            {!loading && <div className="body_container">
+            {!loading && <div className="body__container">
                 <ul className="body__content">
                     {videos.map(data => (
                         data.items.length ? (
                             // exist video data
-                            <li className="body_videos" key={data.items[0]?.id.videoId}>
-                                <p className="body_year">{data.year}년 {date.getMonth() + 1}월 {date.getDate()}일</p>
-                                <div className="body_video" >
+                            <li className="body__videos" key={data.items[0]?.id.videoId}>
+                                <p className="body__year">{data.year}년 {date.getMonth() + 1}월 {date.getDate()}일</p>
+                                <div className="body__video" >
                                     {data.items?.map(item =>
                                         <div className="body__player">
                                             <iframe id={item.id.videoId} title={`video-${item.id.videoId}`} type="text/html" width="400" height="225"
@@ -103,7 +103,7 @@ const Body = () => {
                             </li>) : (
                             //no video data
                             <li key={data.year} className="body__empty" >
-                                <p className="body_year">{data.year}년 {date.getMonth() + 1}월 {date.getDate()}일</p>
+                                <p className="body__year">{data.year}년 {date.getMonth() + 1}월 {date.getDate()}일</p>
                                 <img className="body__emptyImg" src={process.env.PUBLIC_URL + "/img/chim-no-video.png"} alt="no video img" />
                                 <hr />
                             </li>
