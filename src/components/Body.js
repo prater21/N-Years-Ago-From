@@ -1,35 +1,43 @@
 /**
  * body component
  */
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import axios from "axios";
 import Spinner from "react-spinners/ClipLoader";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import "./Body.css"
 
-const Body = () => {
+const Body = ({ channelId, ErrorHandler }) => {
     // date variable
     const [date, setDate] = useState(new Date());
+    const [dateEnd, setDateEnd] = useState(null);
     // video data variable
     const [videos, setVideos] = useState([]);
     const [loading, setLoading] = useState(false);
     const publishData = [];
 
+
+    useEffect(() => {
+        setVideos([]);
+    }, [channelId])
     // get video data
     const getData = async (publishData) => {
         const _videos = [];
         setLoading(true);
         //get data from youtube data API
         for (const pub of publishData) {
+            console.log(pub[0], pub[1]);
+
             await axios.get("https://www.googleapis.com/youtube/v3/search", {
                 params: {
                     key: process.env.REACT_APP_API_KEY,
                     part: "snippet",
-                    channelId: "UCUj6rrhMTR9pipbAWBAMvUQ",
+                    channelId: channelId,
                     type: "video",
                     publishedAfter: pub[0],
-                    publishedBefore: pub[1]
+                    publishedBefore: pub[1],
+                    order: "date"
                 }
             }).then(response => {
                 const _year = pub[0].slice(0, 4);
@@ -37,6 +45,7 @@ const Body = () => {
 
             }).catch(err => {
                 console.log("error", err);
+                ErrorHandler();
             })
         }
         setVideos(_videos);
@@ -44,10 +53,10 @@ const Body = () => {
     }
 
     //set video published date
-    const getPublishDate = (year, iter, today, tomorrow) => {
+    const getPublishDate = (year, iter, start, end) => {
         for (let i = 0; i < iter; i++) {
-            let pubAfter = year + "-" + (today.getMonth() + 1) + "-" + today.getDate() + "T00:00:00Z";
-            let pubBefore = year + "-" + (tomorrow.getMonth() + 1) + "-" + tomorrow.getDate() + "T00:00:00Z";
+            let pubAfter = year + "-" + (start.getMonth() + 1) + "-" + start.getDate() + "T00:00:00Z";
+            let pubBefore = year + "-" + (end.getMonth() + 1) + "-" + end.getDate() + "T23:59:59Z";
             year -= 1;
             publishData.push([pubAfter, pubBefore]);
         }
@@ -56,18 +65,18 @@ const Body = () => {
     // set date when datepicker clicked
     const dateChangeHandler = (date) => {
         setDate(date);
-        let today = new Date(date);
-        let tomorrow = new Date(date);
-        tomorrow.setDate(date.getDate() + 1)
-
+        let start = new Date(date);
+        let end = new Date(date);
+        end.setDate(date.getDate() + 6)
+        setDateEnd(end);
         if (date.getMonth() === 1 && date.getDate() === 28) {   // 29 FEB
-            getPublishDate(date.getYear(), 1, today, tomorrow);
+            getPublishDate(date.getYear(), 1, start, end);
         }
         else if (date < new Date()) {
-            getPublishDate(2023, 7, today, tomorrow);
+            getPublishDate(2023, 7, start, end);
         }
         else {
-            getPublishDate(2022, 6, today, tomorrow);
+            getPublishDate(2022, 6, start, end);
         }
         getData(publishData);
 
@@ -76,22 +85,22 @@ const Body = () => {
     return (
         <div className="body">
             <div className="body__title">
-                <h1 >N년전 오늘의 침착맨</h1>
-                <div className="body_datePicker" >
+                <h1 >N Years Ago From...</h1>
+                <div className="body__datePicker" >
                     <DatePicker selected={date} onChange={(date) => dateChangeHandler(date)} />
                 </div>
             </div>
-            {!loading && <div className="body_container">
+            {!loading && <div className="body__container">
                 <ul className="body__content">
                     {videos.map(data => (
                         data.items.length ? (
                             // exist video data
-                            <li className="body_videos" key={data.items[0]?.id.videoId}>
-                                <p className="body_year">{data.year}년 {date.getMonth() + 1}월 {date.getDate()}일</p>
-                                <div className="body_video" >
+                            <li className="body__videos" key={data.items[0]?.id.videoId}>
+                                <p className="body__year">{data.year}년 {date.getMonth() + 1}월 {date.getDate()}일 ~ {dateEnd.getMonth() + 1}월 {dateEnd.getDate()}일 </p>
+                                <div className="body__video" >
                                     {data.items?.map(item =>
                                         <div className="body__player">
-                                            <iframe id={item.id.videoId} title={`video-${item.id.videoId}`} type="text/html" width="400" height="225"
+                                            <iframe id={item.id.videoId} title={`video-${item.id.videoId}`} type="text/html" width="320" height="180"
                                                 src={`http://www.youtube.com/embed/${item.id.videoId}?enablejsapi=1&origin=http://localhost:3000`}
                                                 frameborder="0" allowFullScreen>
                                             </iframe>
@@ -102,7 +111,7 @@ const Body = () => {
                             </li>) : (
                             //no video data
                             <li key={data.year} className="body__empty" >
-                                <p className="body_year">{data.year}년 {date.getMonth() + 1}월 {date.getDate()}일</p>
+                                <p className="body__year">{data.year}년 {date.getMonth() + 1}월 {date.getDate()}일 ~ {dateEnd.getMonth() + 1}월 {dateEnd.getDate()}일</p>
                                 <img className="body__emptyImg" src={process.env.PUBLIC_URL + "/img/chim-no-video.png"} alt="no video img" />
                                 <hr />
                             </li>

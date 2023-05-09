@@ -7,6 +7,11 @@
   pointer-events: none;
 }
 
+.error {
+  text-align: center;
+  margin-top: 40px;
+  color: white;
+}
 @media (prefers-reduced-motion: no-preference) {
   .App-logo {
     animation: App-logo-spin infinite 20s linear;
@@ -37,7 +42,6 @@
   }
 }
 
-
-.container{
+.container {
   width: 80%;
 }
