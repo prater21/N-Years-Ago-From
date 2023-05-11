@@ -22,7 +22,8 @@ function App() {
       <Header setChannelId={setChId} ErrorHandler={ErrorHandler} setChannelImgSrc={setChImg} />
       {!apiError && <Body channelId={channelId} ErrorHandler={ErrorHandler} channelImgSrc={channelImg} />}
       {apiError && <div className='error'>
-        <h2>Api 할당량이 다 찼습니다. 내일 다시 시도해주세요!</h2>
+        <h2>Api 할당량이 다 찼습니다.</h2>
+        <h2>내일 다시 시도해주세요!</h2>
       </div>}
     </Fragment >
   );

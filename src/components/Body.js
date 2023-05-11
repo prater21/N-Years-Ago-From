@@ -66,22 +66,23 @@ const Body = ({ channelId, channelImgSrc, ErrorHandler }) => {
 
     // set date when datepicker clicked
     const dateChangeHandler = (date) => {
-        setDate(date);
-        let start = new Date(date);
-        let end = new Date(date);
-        end.setDate(date.getDate() + (day - 1))
-        setDateEnd(end);
-        if (date.getMonth() === 1 && date.getDate() === 28) {   // 29 FEB
-            getPublishDate(date.getYear(), 1, start, end);
+        if (channelId) {
+            setDate(date);
+            let start = new Date(date);
+            let end = new Date(date);
+            end.setDate(date.getDate() + (day - 1))
+            setDateEnd(end);
+            if (date.getMonth() === 1 && date.getDate() === 28) {   // 29 FEB
+                getPublishDate(date.getYear(), 1, start, end);
+            }
+            else if (date < new Date()) {
+                getPublishDate(2023, 7, start, end);
+            }
+            else {
+                getPublishDate(2022, 6, start, end);
+            }
+            getData(publishData);
         }
-        else if (date < new Date()) {
-            getPublishDate(2023, 7, start, end);
-        }
-        else {
-            getPublishDate(2022, 6, start, end);
-        }
-        getData(publishData);
-
     }
 
     const daySelect = (e) => {
