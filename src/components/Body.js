@@ -8,7 +8,7 @@ import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import "./Body.css"
 
-const Body = ({ channelId, ErrorHandler }) => {
+const Body = ({ channelId, channelImgSrc, ErrorHandler }) => {
     // date variable
     const [date, setDate] = useState(new Date());
     const [dateEnd, setDateEnd] = useState(null);
@@ -16,6 +16,8 @@ const Body = ({ channelId, ErrorHandler }) => {
     const [videos, setVideos] = useState([]);
     const [loading, setLoading] = useState(false);
     const publishData = [];
+
+    const [day, setDay] = useState(1);
 
 
     useEffect(() => {
@@ -67,7 +69,7 @@ const Body = ({ channelId, ErrorHandler }) => {
         setDate(date);
         let start = new Date(date);
         let end = new Date(date);
-        end.setDate(date.getDate() + 6)
+        end.setDate(date.getDate() + (day - 1))
         setDateEnd(end);
         if (date.getMonth() === 1 && date.getDate() === 28) {   // 29 FEB
             getPublishDate(date.getYear(), 1, start, end);
@@ -82,12 +84,25 @@ const Body = ({ channelId, ErrorHandler }) => {
 
     }
 
+    const daySelect = (e) => {
+        let _day = parseInt(e.target.value);
+        setDay(_day);
+    }
+
     return (
         <div className="body">
             <div className="body__title">
-                <h1 >N Years Ago From...</h1>
-                <div className="body__datePicker" >
-                    <DatePicker selected={date} onChange={(date) => dateChangeHandler(date)} />
+                <p>N Years Ago From...</p>
+                <div className="body__select">
+                    <div className="body__datePicker" >
+                        <DatePicker selected={date} onChange={(date) => dateChangeHandler(date)} />
+                    </div>
+                    <select className="body__daySelect" onChange={daySelect}>
+                        <option value="1">1일</option>
+                        <option value="7">7일</option>
+                        <option value="14">14일</option>
+                        <option value="30">30일</option>
+                    </select>
                 </div>
             </div>
             {!loading && <div className="body__container">
@@ -112,7 +127,7 @@ const Body = ({ channelId, ErrorHandler }) => {
                             //no video data
                             <li key={data.year} className="body__empty" >
                                 <p className="body__year">{data.year}년 {date.getMonth() + 1}월 {date.getDate()}일 ~ {dateEnd.getMonth() + 1}월 {dateEnd.getDate()}일</p>
-                                <img className="body__emptyImg" src={process.env.PUBLIC_URL + "/img/chim-no-video.png"} alt="no video img" />
+                                <img className="body__emptyImg" src={channelImgSrc} alt="no video img" />
                                 <hr />
                             </li>
                         ))
@@ -131,6 +146,7 @@ const Body = ({ channelId, ErrorHandler }) => {
                         speedMultiplier={0.7}
                     />
                 </div>}
+
 
         </div >
     )

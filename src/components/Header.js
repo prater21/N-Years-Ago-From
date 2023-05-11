@@ -8,10 +8,11 @@ import Spinner from "react-spinners/ClipLoader";
 
 import "./Header.css"
 
-const Header = ({ setChannelId, ErrorHandler }) => {
+const Header = ({ setChannelId, setChannelImgSrc, ErrorHandler }) => {
 
-    const youtubetInput = useRef();
+    const searchInput = useRef();
     const [displaySearch, setDisplaySearch] = useState(false);
+    const [blurOn, setBlurOn] = useState(false);
     const [searchResult, setSearchResult] = useState([]);
     const [youtuber, setYoutuber] = useState(null);
     const [loading, setLoading] = useState(false);
@@ -19,13 +20,13 @@ const Header = ({ setChannelId, ErrorHandler }) => {
     const submitHandler = async (event) => {
         event.preventDefault();
         setLoading(true);
-        console.log(youtubetInput.current.value);
+
         await axios.get("https://www.googleapis.com/youtube/v3/search", {
             params: {
                 key: process.env.REACT_APP_API_KEY,
                 part: "snippet",
                 type: "channel",
-                q: youtubetInput.current.value
+                q: searchInput.current.value
             }
         }).then(response => {
             console.log(response.data)
@@ -40,17 +41,43 @@ const Header = ({ setChannelId, ErrorHandler }) => {
 
     return <div className="header">
         <div className="header__top">
-            <img className="header__icon" src={process.env.PUBLIC_URL + '/img/youtubeIcon.png'} alt="" />
-            <p className="header__title">N Years Ago From</p>
-            <form onSubmit={submitHandler}>
-                <input ref={youtubetInput} onChange={() => { setSearchResult([]) }} onFocus={() => { setDisplaySearch(true); }} onBlur={() => { setDisplaySearch(false); }} type="text" id="youtuber" className="header__input" />
+            <div className="header__topLeft">
+                <img className="header__icon" src={process.env.PUBLIC_URL + '/img/youtubeIcon.png'} alt="" />
+                <h1 className="header__title">N Years Ago From</h1>
+            </div>
+            <form className="header__topRight" onSubmit={submitHandler}>
+                <input
+                    className="header__searchInput"
+                    ref={searchInput}
+                    onChange={() => { setSearchResult([]) }}
+                    onMouseOver={() => { setBlurOn(false) }}
+                    onFocus={() => { setDisplaySearch(true); }}
+                    onBlur={() => { if (blurOn) { setDisplaySearch(false); } }}
+                    type="text"
+                />
                 {displaySearch &&
-                    <ul className="header__searchResults">
+                    <ul
+                        className="header__searchResults"
+                        onMouseOver={() => { setBlurOn(false) }}
+                        onMouseOut={() => { setBlurOn(true) }}>
                         {!loading &&
-                            searchResult.map(result => <li className="header__searchResult" onClick={() => { setChannelId(result.snippet.channelId); setYoutuber({ imgSrc: result.snippet.thumbnails.default.url, title: result.snippet.channelTitle, description: result.snippet.description }); setDisplaySearch(false); }}>
-                                <img width={"40px"} src={result.snippet.thumbnails.default.url} alt="" />
-                                <p> {result.snippet.channelTitle}</p>
-                            </li>)
+                            searchResult.map(result =>
+                                <li className="header__searchResult"
+                                    onClick={() => {
+                                        setChannelId(result.snippet.channelId);
+                                        setChannelImgSrc(result.snippet.thumbnails.high.url);
+                                        setYoutuber(
+                                            {
+                                                imgSrc: result.snippet.thumbnails.default.url,
+                                                title: result.snippet.channelTitle,
+                                                description: result.snippet.description
+                                            });
+                                        setDisplaySearch(false);
+                                    }}>
+                                    <img width={"40px"} src={result.snippet.thumbnails.default.url} alt="" />
+                                    <p> {result.snippet.channelTitle}</p>
+                                </li>)
+
                         }
                         {loading &&
                             <div className="header__spiner">
@@ -61,24 +88,25 @@ const Header = ({ setChannelId, ErrorHandler }) => {
                                     speedMultiplier={0.7}
                                 />
                             </div>}
+                        <p className="header__searchClose" onClick={() => { setDisplaySearch(false); }}>Close</p>
                     </ul>}
-
-                <button>search</button>
+                <button className="header__searchIcon" >
+                    <img width={"20px"} src={process.env.PUBLIC_URL + '/img/searchIcon.png'} alt="" />
+                </button>
             </form>
         </div>
-
         {!youtuber && <div className="header__noProfile">
             <h2>Pick your Youtuber</h2>
         </div>}
         {youtuber && <div className="header__profile">
             <img className="header__profileImg" src={youtuber.imgSrc} alt="" />
             <div>
-                <p className="header__name">{youtuber.title}</p>
+                <p className="header__profileName">{youtuber.title}</p>
                 <p className="header__description">{youtuber.description}</p>
             </div>
         </div>}
         <hr className="header__line"></hr>
-    </div>
+    </div >
 }
 
 export default Header;
