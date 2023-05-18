@@ -29,7 +29,7 @@ const Header = ({ setChannelId, setChannelImgSrc, ErrorHandler }) => {
                 q: searchInput.current.value
             }
         }).then(response => {
-            console.log(response.data)
+            // console.log(response.data)
             setSearchResult(response.data.items);
 
         }).catch(err => {
