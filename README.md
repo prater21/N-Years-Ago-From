@@ -4,7 +4,7 @@
 
 Simple website about youtuber's videos that uploaded on a specific day from 2017 to 2023
 
-[__>>LIVE DEMO__](https://prater21.github.io/N-Years-Ago-From/)
+[__>>LIVE DEMO__](https://n-years-ago-from.netlify.app/)
 
 <img width="50%" src="https://github.com/prater21/N-Years-Ago-From/assets/126800695/11bcba08-d120-4364-9f05-0ddb4ada7d35" /> 
 
