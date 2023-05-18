@@ -29,8 +29,7 @@ const Body = ({ channelId, channelImgSrc, ErrorHandler }) => {
         setLoading(true);
         //get data from youtube data API
         for (const pub of publishData) {
-            console.log(pub[0], pub[1]);
-
+            // console.log(pub[0], pub[1]);
             await axios.get("https://www.googleapis.com/youtube/v3/search", {
                 params: {
                     key: process.env.REACT_APP_API_KEY,
@@ -117,7 +116,7 @@ const Body = ({ channelId, channelImgSrc, ErrorHandler }) => {
                                     {data.items?.map(item =>
                                         <div className="body__player">
                                             <iframe id={item.id.videoId} title={`video-${item.id.videoId}`} type="text/html" width="320" height="180"
-                                                src={`http://www.youtube.com/embed/${item.id.videoId}?enablejsapi=1&origin=http://localhost:3000`}
+                                                src={`http://www.youtube.com/embed/${item.id.videoId}`}
                                                 frameborder="0" allowFullScreen>
                                             </iframe>
                                         </div>
