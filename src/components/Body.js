@@ -93,7 +93,7 @@ const Body = () => {
                                     {data.items?.map(item =>
                                         <div className="body__player">
                                             <iframe id={item.id.videoId} title={`video-${item.id.videoId}`} type="text/html" width="400" height="225"
-                                                src={`http://www.youtube.com/embed/${item.id.videoId}?enablejsapi=1&origin=http://localhost:3000`}
+                                                src={`http://www.youtube.com/embed/${item.id.videoId}`}
                                                 frameborder="0" allowFullScreen>
                                             </iframe>
                                         </div>
