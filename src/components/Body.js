@@ -23,6 +23,7 @@ const Body = ({ channelId, channelImgSrc, ErrorHandler }) => {
     useEffect(() => {
         setVideos([]);
     }, [channelId])
+    
     // get video data
     const getData = async (publishData) => {
         const _videos = [];

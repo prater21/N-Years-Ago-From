@@ -14,13 +14,16 @@
   margin-left: 10px;
   font-size: 1.1rem;
 }
+
 .body__select {
   display: flex;
 }
+
 .body__datePicker {
   margin-left: 20px;
   margin-top: 18px;
 }
+
 .body__daySelect {
   height: 22px;
   margin: 18px;
@@ -39,9 +42,10 @@
 }
 
 .body__emptyImg {
-  width: 180px;
+  width: 150px;
   margin-left: 20px;
   margin-bottom: 5px;
+  border-radius: 5px;
 }
 
 .body__year {
@@ -52,7 +56,7 @@
 .body__video {
   display: flex;
   margin-left: 10px;
-  margin-bottom: 20px;
+  margin-bottom: 10px;
   width: 830px;
   overflow-x: scroll;
   gap: 10px;
@@ -85,35 +89,43 @@
   .body__title p {
     font-size: 1rem;
   }
+
   .body__title,
   .body__container {
     width: 90%;
   }
+
   .body__content {
     width: 100%;
   }
+
   .body__videos hr,
   .body__empty hr {
     width: 100%;
   }
+
   .body__videos,
   .body__empty {
     width: 95%;
     margin: auto;
     margin-bottom: 15px;
   }
+
   .body__video {
     width: 100%;
     margin: 0;
     margin-bottom: 0px;
   }
+
   .body__emptyImg {
     width: 130px;
   }
+
   .body__player iframe {
     width: 240px;
     height: 135px;
   }
+
   .body__year {
     margin: 10px;
     font-size: 0.9rem;
@@ -124,13 +136,16 @@
   .body__title {
     flex-direction: column;
   }
+
   .body__title p {
     margin-left: 20px;
   }
+
   .body__datePicker {
     margin-left: 20px;
     margin-top: 10px;
   }
+
   .body__daySelect {
     margin-top: 10px;
   }

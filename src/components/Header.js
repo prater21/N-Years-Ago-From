@@ -1,11 +1,9 @@
 /**
  * header component
  */
-
 import { useRef, useState } from "react";
 import axios from "axios";
 import Spinner from "react-spinners/ClipLoader";
-
 import "./Header.css"
 
 const Header = ({ setChannelId, setChannelImgSrc, ErrorHandler }) => {
@@ -89,15 +87,18 @@ const Header = ({ setChannelId, setChannelImgSrc, ErrorHandler }) => {
                                 />
                             </div>}
                         <p className="header__searchClose" onClick={() => { setDisplaySearch(false); }}>Close</p>
-                    </ul>}
+                </ul>
+                }
                 <button className="header__searchIcon" >
                     <img width={"20px"} src={process.env.PUBLIC_URL + '/img/searchIcon.png'} alt="" />
                 </button>
             </form>
         </div>
+        
         {!youtuber && <div className="header__noProfile">
             <h2>Pick your Youtuber</h2>
         </div>}
+
         {youtuber && <div className="header__profile">
             <img className="header__profileImg" src={youtuber.imgSrc} alt="" />
             <div>

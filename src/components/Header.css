@@ -3,6 +3,7 @@
   flex-direction: column;
   align-items: center;
 }
+
 .header__top {
   display: flex;
   align-items: center;
@@ -14,10 +15,12 @@
   display: flex;
   gap: 10px;
 }
+
 .header__icon {
   width: 40px;
   object-fit: contain;
 }
+
 .header__title {
   color: white;
   font-size: 1.1rem;
@@ -26,6 +29,7 @@
 .header__topRight {
   margin-left: auto;
 }
+
 .header__searchInput {
   width: 500px;
   height: 35px;
@@ -33,6 +37,7 @@
   border-radius: 50px;
   border: 1px solid rgb(34, 34, 34);
 }
+
 .header__searchResults {
   display: flex;
   flex-direction: column;
@@ -41,33 +46,37 @@
   width: 510px;
   min-height: 90px;
   max-height: 340px;
-  overflow-y: scroll;
   margin: 5px 12px;
   border-radius: 5px;
   background-color: white;
   list-style: none;
   padding: 0;
 }
+
 .header__searchResult {
   display: flex;
   align-items: center;
   padding: 3px 15px;
 }
+
 .header__searchResult:hover {
   background-color: gray;
   cursor: pointer;
 }
+
 .header__searchResult img {
   border-radius: 50%;
   width: 30px;
   height: 30px;
   margin-right: 5px;
 }
+
 .header__spiner {
   margin: auto;
   margin-top: 30px;
   text-align: center;
 }
+
 .header__searchClose {
   color: gray;
   width: 50px;
@@ -85,6 +94,7 @@
   margin-top: 6px;
   cursor: pointer;
 }
+
 .header__searchIcon img {
   width: 20px;
   margin-left: auto;
@@ -98,6 +108,7 @@
   display: flex;
   width: 850px;
 }
+
 .header__profileImg {
   width: 70px;
   border-radius: 5px;
@@ -130,6 +141,7 @@
     width: 95%;
     margin: auto;
   }
+
   .header__top {
     width: 95%;
     margin-bottom: 10px;
@@ -138,20 +150,25 @@
   .header__searchInput {
     width: 300px;
   }
+
   .header__searchResults {
     width: 310px;
   }
+
   .header__profileImg {
     width: 60px;
     margin: 15px 15px 10px 0px;
   }
+
   .header__profileName {
     font-size: 1rem;
     margin: 14px 0 0 0;
   }
+
   .header__description {
     font-size: 0.8rem;
   }
+
   .header__line {
     width: 98%;
   }
@@ -162,13 +179,16 @@
     flex-direction: column;
     margin: 20px 0;
   }
+
   .header__topRight {
     margin-top: 10px;
     margin-left: 0;
   }
+
   .header__searchInput {
     width: 200px;
   }
+  
   .header__searchResults {
     width: 210px;
   }
