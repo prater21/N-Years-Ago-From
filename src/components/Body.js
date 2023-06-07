@@ -82,6 +82,11 @@ const Body = () => {
                     <DatePicker selected={date} onChange={(date) => dateChangeHandler(date)} />
                 </div>
             </div>
+
+            {!loading && videos.length === 0 && <div className="body__container">
+                <h3>Choose a date</h3>
+            </div>}
+
             {!loading && <div className="body__container">
                 <ul className="body__content">
                     {videos.map(data => (
