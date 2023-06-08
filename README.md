@@ -2,7 +2,7 @@
 
 <img src="https://img.shields.io/badge/React-gray?style=for-the-badge&logo=React&logoColor=#61DAFB">
 
-Simple website about youtuber's videos that uploaded on a specific day from 2017 to 2023
+Simple Web App about youtube videos that uploaded on a specific day from 2017 to 2023
 
 [__>>LIVE DEMO__](https://n-years-ago-from.netlify.app/)
 
@@ -13,4 +13,11 @@ Simple website about youtuber's videos that uploaded on a specific day from 2017
 
 - React
 - [Youtube Data Api](https://developers.google.com/youtube)
+- [react-datepicker](https://www.npmjs.com/package/react-datepicker)
 
+
+## Features
+
+- Select Youtuber
+- Choose a date and then provide youtube videos from the date
+- Set the period (1, 7, 14, 30 days)
