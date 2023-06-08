@@ -19,15 +19,15 @@ const Body = ({ channelId, channelImgSrc, ErrorHandler }) => {
 
     const [day, setDay] = useState(1);
 
-
     useEffect(() => {
         setVideos([]);
     }, [channelId])
-    
+
     // get video data
     const getData = async (publishData) => {
         const _videos = [];
         setLoading(true);
+
         //get data from youtube data API
         for (const pub of publishData) {
             // console.log(pub[0], pub[1]);
@@ -107,7 +107,7 @@ const Body = ({ channelId, channelImgSrc, ErrorHandler }) => {
                 </div>
             </div>
 
-            {!loading &&  videos.length === 0 && <div className="body__container">
+            {!loading && videos.length === 0 && <div className="body__container">
                 <h3>Choose a date</h3>
             </div>}
 
@@ -152,8 +152,6 @@ const Body = ({ channelId, channelImgSrc, ErrorHandler }) => {
                         speedMultiplier={0.7}
                     />
                 </div>}
-
-
         </div >
     )
 }
