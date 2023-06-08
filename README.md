@@ -2,7 +2,7 @@
 
 <img src="https://img.shields.io/badge/React-gray?style=for-the-badge&logo=React&logoColor=#61DAFB">
 
-N Years Ago From is a web application that shows you chim-chak-man(youtuber) videos that uploaded on a specific day from 2017 to 2023
+Simple Web Application that shows you chim-chak-man(youtuber) videos that uploaded on a specific day from 2017 to 2023
 
 [__>>LIVE DEMO__](https://prater21.github.io/N-Years-Ago-From/)
 
@@ -13,3 +13,4 @@ N Years Ago From is a web application that shows you chim-chak-man(youtuber) vid
 
 - React
 - [Youtube Data Api](https://developers.google.com/youtube)
+- [react-datepicker](https://www.npmjs.com/package/react-datepicker)
